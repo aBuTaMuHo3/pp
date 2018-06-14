@@ -7,6 +7,8 @@ public:
 	double CalculatePi();
 private:
 	size_t m_iterationCount;
-
+	void SingleThreadCalculatior();
+	bool IsPointInCircle(double x, double y);
+	double m_pi;
 };
 

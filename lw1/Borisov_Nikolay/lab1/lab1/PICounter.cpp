@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PICounter.h"
-
+static double CIRCLE_RADIUS = 1;
+static int MULTIPLIER = 4;
 
 PICounter::PICounter(size_t iterationCount)
 	: m_iterationCount(iterationCount)
@@ -9,17 +10,28 @@ PICounter::PICounter(size_t iterationCount)
 
 double PICounter::CalculatePi()
 {
-	int c = 0;
+	SingleThreadCalculatior();
+	return m_pi;
+}
+
+void PICounter::SingleThreadCalculatior()
+{
+	int pointsInCircle = 0;
 	double x, y;
-	for (double i = 0; i < m_iterationCount ; ++i) {
-		x = (double)rand() / (RAND_MAX);
-		y = (double)rand() / (RAND_MAX);
-		if (x * x + y * y <= 1.0)
+	for (double i = 0; i < m_iterationCount; ++i) {
+		x = (double)rand() / (RAND_MAX * CIRCLE_RADIUS);
+		y = (double)rand() / (RAND_MAX * CIRCLE_RADIUS);
+		if (IsPointInCircle(x, y))
 		{
-			c++;
+			pointsInCircle++;
 		}
 	}
-	return (double)c / m_iterationCount * 4.0;
+	m_pi = pointsInCircle / m_iterationCount * 4.0;
+}
+
+bool PICounter::IsPointInCircle(double x, double y)
+{
+	return x * x + y * y <= CIRCLE_RADIUS;
 }
 
 

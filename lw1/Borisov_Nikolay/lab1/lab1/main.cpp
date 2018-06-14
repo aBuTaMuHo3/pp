@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
 	unsigned int startTime = clock();
 	double pi = monteCarlo.CalculatePi();
 	unsigned int endTime = clock();
-	cout.precision(10);
-	
+	cout.precision(5);	
 	cout << "Pi ~= " << pi << endl;
 	cout << "Calculeted in " << (float)(endTime - startTime) / CLOCKS_PER_SEC << " seconds" << endl;
 	return 0;
