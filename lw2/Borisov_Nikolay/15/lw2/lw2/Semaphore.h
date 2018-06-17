@@ -2,6 +2,7 @@
 class Semaphore
 {
 public:
+	Semaphore() = default;
 	Semaphore(size_t initCount, size_t maxCount);
 	~Semaphore();
 
