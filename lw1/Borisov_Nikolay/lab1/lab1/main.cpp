@@ -7,7 +7,7 @@ static const size_t MAX_ARGS_COUNT = 3;
 static const size_t MIN_ITERATION_COUNT = 1;
 static const size_t MIN_THREAD_COUNT = 1;
 static const string HELP_FLAG = "--h";
-static const string HELP_MESSAGE = "To use this program, type \" lab1.exe <iteration_count>\" in your command line\n";
+static const string HELP_MESSAGE = "To use this program, type \" lab1.exe <iteration_count> <thread_count>\" in your command line\n";
 static const string ERROR_MESSAGE = "Invalid arguments \n" "Use lab1.exe --h for help\n";
 
 int main(int argc, char *argv[])
