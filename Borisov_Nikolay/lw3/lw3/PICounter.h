@@ -8,8 +8,8 @@ public:
 private:
 	size_t m_iterationCount;
 	double m_pi = 0;
-	static size_t m_pointsInCircle;
-	void SingleThreadCalculator();
-	static bool IsPointInCircle(double x, double y);
+	size_t m_pointsInCircle;
+	void Calculator();
+	bool IsPointInCircle(double x, double y);
 };
 

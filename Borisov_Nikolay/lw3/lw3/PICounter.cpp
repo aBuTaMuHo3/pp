@@ -3,30 +3,33 @@
 #include <random>
 static double CIRCLE_RADIUS = 1;
 static int MULTIPLIER = 4;
-size_t PICounter::m_pointsInCircle = 0;
+
 
 PICounter::PICounter(size_t iterationCount)
-	: m_iterationCount(iterationCount)
+	: m_iterationCount(iterationCount),
+	m_pointsInCircle(0)
 {
 	std::srand(time(0));
 }
 
 double PICounter::CalculatePi()
 {
-	SingleThreadCalculator();
+	Calculator();
 	return m_pi;
 }
 
-void PICounter::SingleThreadCalculator()
+void PICounter::Calculator()
 {
 	double x;
 	double y;
+	#pragma omp parallel for 
 	for (size_t i = 0; i < m_iterationCount; ++i)
 	{
 		x = (float)rand() / RAND_MAX * CIRCLE_RADIUS;
 		y = (float)rand() / RAND_MAX * CIRCLE_RADIUS;
 		if (IsPointInCircle(x, y))
 		{
+			#pragma omp atomic
 			m_pointsInCircle++;
 		}
 	}
